@@ -19,7 +19,7 @@ function mortgageCalculator(name,monthlyRate){
     return name + ' , your monthly rate is ' + monthlyRate;
 }
 
-console.log(mortgageCalculator(name,monthlyRate));
+console.log(mortgageCalculator(name,monthlyRate)); 
 
 
 
@@ -38,21 +38,17 @@ console.log(mortgageCalculator(name,monthlyRate));
     console.log(mortgageCalculator(200000, 0.05, 30,500));
     
     
-        function variableInterestRate(P,I,N) {
-            let lowInterest = I - 0.02;
-            let monthlyInterestRate;
-            let periods = yrs * 12;
-            
-            let n1 = Math.pow((1 + monthlyInterestRate),periods);
-            let numerator = n1 * monthlyInterestRate;
-            let denominator = n1 - 1;
-            let monthlyRate = principal * (numerator/denominator);
-          
-            for(let i = lowInterest; i <= lowInterest + 0.02; i += 0.005) {
-              monthlyInterestRate = i.toFixed(3) / 12
-            
 
-          
-              console.log( name + ', with an interest rate of ' + i.toFixed(3) + ' your monthly rate is ' + Math.round(P * monthlyRate));
-            }
-          }
+
+
+          function variableInterestRate(P, I, N) {
+            I -= 0.02;
+            for( let i = 0; i < 10; i ++){
+                let monthlyRate = Math.round(P * (((I/12) * Math.pow((1 + (I/12)), (N * 12))) / (Math.pow((1 + (I/12)), (N * 12)) - 1)) *100)/100
+
+                console.log(name +", with an interest rate of " + I.toFixed(3) + " your monthly rate is " +  Math.round(monthlyRate));
+                I += 0.005;
+            };
+        }
+
+      console.log(variableInterestRate(200000, 0.04, 30));
